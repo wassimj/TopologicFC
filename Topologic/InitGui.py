@@ -27,11 +27,12 @@ class TopologicWorkbench (Workbench):
 
     def Initialize(self):
         """This function is executed when FreeCAD starts"""
-        import TPVertexGui # import here all the needed files that create your FreeCAD commands
-        self.list = ["TPVertices"] # A list of command names created in the line above
+        import TPVertexGui, TPCellComplexGui # import here all the needed files that create your FreeCAD commands
+        self.list = ["TPVertices", "TPCellComplexDecompose"] # A list of command names created in the line above
         self.appendToolbar("Topologic Commands",self.list) # creates a new toolbar with your commands
         self.appendMenu("Topologic",[]) # creates a new menu
         self.appendMenu(["Topologic","Vertex"],self.list) # appends a submenu to an existing menu
+        self.appendMenu(["Topologic","CellComplex"],self.list) # appends a submenu to an existing menu
 
     def Activated(self):
         """This function is executed when the workbench is activated"""
