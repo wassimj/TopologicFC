@@ -20,6 +20,7 @@ import FreeCADGui
 import Part
 import math
 import sys
+import os
 
 import topologic
 from topologic import CellComplex
@@ -136,7 +137,8 @@ class TPCellComplexDecompose():
 	def GetResources(self):
 		return {'Accel' : "Shift+S", # a default shortcut (optional)
 				'MenuText': "TPCellComplexDecompose",
-				'ToolTip' : "Decompose the CellComplex"}
+				'ToolTip' : "Decompose the CellComplex",
+				'Pixmap' : os.path.join(FreeCAD.__path__[2],'Topologic','Resources','icons','TPDecompose.svg')}
 
 	def Activated(self):
 		selections = FreeCADGui.Selection.getSelection()

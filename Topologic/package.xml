@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package format="1" xmlns="https://wiki.freecad.org/Package_Metadata">
+  <name>TopologicFC Workbench</name>
+  <description>A Topologic Workbench for FreeCAD.</description>
+  <version>0.1</version>
+  <date>2022-04-29</date>
+  <maintainer email="info@topologic.app">Wassim Jabi</maintainer>
+  <license file="LICENSE">AGPLv3.0</license>
+  <url type="repository" branch="main">https://github.com/wassimj/TopologicFC</url>
+  <icon>Resources/icons/TopologicWorkbench.svg</icon> <!-- If you include your icon here, you don't have to submit it to the main FreeCAD repo -->
+
+  <content>
+    <workbench>
+      <classname>Topologic</classname>
+      <subdirectory>./</subdirectory>
+    </workbench>
+  </content>
+</package>

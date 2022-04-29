@@ -25,34 +25,34 @@ import topologic
 from topologic import Vertex
 import os
 
-def getVertices(sel):
+def getEdges(sel):
     doc = FreeCAD.ActiveDocument
     sel.ViewObject.Transparency = 75
     doc.recompute()
     selString = sel.Shape.exportBrepToString()
     top = topologic.Topology.ByString(selString)
-    vertices = []
-    _ = top.Vertices(None, vertices)
+    edges = []
+    _ = top.Edges(None, edges)
     topologies = []
-    for vertex in vertices:
-        copyTopology = topologic.Topology.DeepCopy(vertex)
+    for edge in edges:
+        copyTopology = topologic.Topology.DeepCopy(edge)
         topologies.append(copyTopology)
 
     cluster = topologic.Cluster.ByTopologies(topologies)
     sh=Part.Shape()
     sh.importBrepFromString(str(cluster.String()))
-    f = doc.addObject("Part::Feature", sel.Name+"_"+"Vertices") # create a document with a feature
+    f = doc.addObject("Part::Feature", sel.Name+"_"+"Edges") # create a document with a feature
     f.Shape = sh # Assign the shape to the shape property
     doc.recompute()
 
-class TPVertices():
-	"""Vertex"""
+class TPEdges():
+	"""Edge"""
 	
 	def GetResources(self):
 		return {'Accel' : "Shift+S", # a default shortcut (optional)
-                'MenuText': "TPVertices",
-                'ToolTip' : "Creates a Vertices Cluster from the input object",
-                'Pixmap' : os.path.join(FreeCAD.__path__[2],'Topologic','Resources','icons','TPVertices.svg')}
+                'MenuText': "TPEdges",
+                'ToolTip' : "Creates an Edges Cluster from the input object",
+                'Pixmap' : os.path.join(FreeCAD.__path__[2],'Topologic','Resources','icons','TPEdges.svg')}
 
 	def Activated(self):
 		selections = FreeCADGui.Selection.getSelection()
@@ -68,4 +68,4 @@ class TPVertices():
         are met or not. This function is optional."""
 		return True
 
-FreeCADGui.addCommand('TPVertices',TPVertices())
+FreeCADGui.addCommand('TPEdges',TPEdges())
